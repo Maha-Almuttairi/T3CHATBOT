@@ -1,0 +1,420 @@
+{
+  "intents": [
+    {
+      "intent": "استفسار",
+      "examples": [
+        {
+          "text": "عدد ساعات التدريب"
+        },
+        {
+          "text": "مدة التدريب"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "الترحيب",
+      "examples": [
+        {
+          "text": "أهلا"
+        },
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "سلام"
+        },
+        {
+          "text": "مرحبا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "الشكر_الثناء",
+      "examples": [
+        {
+          "text": "ألف شكر"
+        },
+        {
+          "text": "جزاك الله خير"
+        },
+        {
+          "text": "خدمة رائعة"
+        },
+        {
+          "text": "شكراااا"
+        },
+        {
+          "text": "شكراً جزيلاً"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تقييم_الخدمة",
+      "examples": [
+        {
+          "text": "جيد"
+        },
+        {
+          "text": "جيد جدا"
+        },
+        {
+          "text": "غير مرضي"
+        },
+        {
+          "text": "ممتاز"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "مكان_التدريب",
+      "examples": [
+        {
+          "text": "المقر"
+        },
+        {
+          "text": "مقرات"
+        },
+        {
+          "text": "مقر التدريب"
+        },
+        {
+          "text": "وين المكان"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "موافقة",
+      "examples": [
+        {
+          "text": "أوافق على التدريب"
+        },
+        {
+          "text": "نعم أرغب"
+        },
+        {
+          "text": "نعم أوافق"
+        },
+        {
+          "text": "يشرفني الانظمام لكم"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "نوع_التدريب",
+      "examples": [
+        {
+          "text": "كيف راح يكون التدريب"
+        },
+        {
+          "text": "ما مجال التدريب"
+        },
+        {
+          "text": "ما نوع التدريب"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "وداع",
+      "examples": [
+        {
+          "text": "إلى اللقاء"
+        },
+        {
+          "text": "نشكر تعاونكم"
+        },
+        {
+          "text": "وداعاَ"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "رقم",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "10",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "عشرة",
+          "synonyms": [
+            "10",
+            "تن",
+            "عشر"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_7_1625870219251",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "قبول",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "نسعد ونتشرف بكم"
+              },
+              {
+                "text": "على الرحب والسعة"
+              },
+              {
+                "text": "فخورين بأمثالكم"
+              },
+              {
+                "text": "حياكم الله "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#موافقة",
+      "dialog_node": "node_2_1625869983853",
+      "previous_sibling": "node_5_1625870645152"
+    },
+    {
+      "type": "standard",
+      "title": "شكر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "الشكر موصول لكم"
+              },
+              {
+                "text": "وأنتم كذلك "
+              },
+              {
+                "text": "سعدنا بخدمتكم"
+              },
+              {
+                "text": "الشرف لنا "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#الشكر_الثناء",
+      "dialog_node": "node_4_1625870128365",
+      "previous_sibling": "node_2_1625869983853"
+    },
+    {
+      "type": "standard",
+      "title": "مكان",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "عن بعد عبر منصة زوم"
+              },
+              {
+                "text": "تدريب أون لاين "
+              },
+              {
+                "text": "تصل إليك المعلومات عبر البريد المسجل"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#مكان_التدريب",
+      "dialog_node": "node_4_1625870574962",
+      "previous_sibling": "node_9_1625768319306"
+    },
+    {
+      "type": "standard",
+      "title": "النوع",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تدريب متزامن في مجالات هندسة الروبتكس"
+              },
+              {
+                "text": "تدريب عن بعد في مجال الروبتكس"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#نوع_التدريب",
+      "dialog_node": "node_5_1625870645152",
+      "previous_sibling": "node_4_1625870574962"
+    },
+    {
+      "type": "standard",
+      "title": "وداع",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبتين"
+              },
+              {
+                "text": "إلى اللقاء"
+              },
+              {
+                "text": "مع السلامة"
+              },
+              {
+                "text": "ياهلا تريليون"
+              },
+              {
+                "text": "تشرفنا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "وردة",
+            "source": "https://img.icons8.com/emoji/50/000000/tulip-emoji.png",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#وداع",
+      "dialog_node": "node_7_1625870219251",
+      "previous_sibling": "node_4_1625870128365"
+    },
+    {
+      "type": "standard",
+      "title": "استفسار",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "320   ساعة"
+              },
+              {
+                "text": "شهرين "
+              },
+              {
+                "text": "60 يوم"
+              },
+              {
+                "text": "نسعد بخدمتك "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#استفسار",
+      "dialog_node": "node_9_1625768319306",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "هلا وغلا "
+              },
+              {
+                "text": "مرحبا "
+              },
+              {
+                "text": "حياك "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#الترحيب",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
